@@ -21,15 +21,24 @@ defmodule TodoWeb.TaskLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
+    task = %Task{}
+    task = put_in(task.starts, today())
+
     socket
     |> assign(:page_title, "New Task")
-    |> assign(:task, %Task{})
+    |> assign(:task, task)
   end
 
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Tasks")
     |> assign(:task, nil)
+  end
+
+  defp today() do
+    today = DateTime.now!("Etc/UTC")
+    %{year: today.year, month: today.month, day: today.day, hour: 0,
+      minute: 0, second: 0}
   end
 
   @impl true
