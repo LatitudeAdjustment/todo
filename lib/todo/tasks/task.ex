@@ -18,5 +18,6 @@ defmodule Todo.Tasks.Task do
     task
     |> cast(attrs, [:starts, :title, :description, :completed])
     |> validate_required([:starts, :title])
+    |> unique_constraint([:starts, :title])
   end
 end

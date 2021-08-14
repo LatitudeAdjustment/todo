@@ -5,9 +5,11 @@ defmodule TodoWeb.TaskLiveTest do
 
   alias Todo.Tasks
 
-  @create_attrs %{completed: true, description: "some description", title: "some title"}
-  @update_attrs %{completed: false, description: "some updated description", title: "some updated title"}
-  @invalid_attrs %{completed: nil, description: nil, title: nil}
+  @create_attrs %{title: "some title", description: "some description",
+    starts: ~N[2021-08-12 14:00:00], completed: true}
+  @update_attrs %{title: "some updated title", description: "some updated description",
+    starts: ~N[2021-08-12 14:00:00], completed: false}
+  @invalid_attrs %{title: nil, description: nil, starts: ~N[2021-08-12 14:00:00], completed: false}
 
   defp fixture(:task) do
     {:ok, task} = Tasks.create_task(@create_attrs)
@@ -41,9 +43,11 @@ defmodule TodoWeb.TaskLiveTest do
              |> form("#task-form", task: @invalid_attrs)
              |> render_change() =~ "can&#39;t be blank"
 
+      create_attrs = Map.put(@create_attrs, :title, "Some other title")
+
       {:ok, _, html} =
         index_live
-        |> form("#task-form", task: @create_attrs)
+        |> form("#task-form", task: create_attrs)
         |> render_submit()
         |> follow_redirect(conn, Routes.task_index_path(conn, :index))
 
