@@ -1,20 +1,28 @@
 # Todo
 
-To start your Phoenix server:
+Personal task manager based on following requirements:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+https://paper.dropbox.com/doc/Kamana-Code-Sample-KaKg1HqgIPTDlaxb5pFTa
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Getting Started
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Clone the repository.
 
-## Learn more
+Get dependencies.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```bash
+mix deps.get
+```
+Run migrations
+
+```bash
+$ mix ecto.setup
+```
+
+### Start the Webserver
+
+From the base project folder, start the server.
+
+```bash
+mix phx.server
+```
