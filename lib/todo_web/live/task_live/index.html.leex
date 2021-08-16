@@ -26,8 +26,11 @@
         <td><%= task.starts %></td>
         <td><%= task.title %></td>
         <td><%= task.description %></td>
+        <%= if false do %>
         <td><%= task.completed %></td>
-
+        <% else %>
+        <td><%= checkbox(:tasks, :completed, phx_click: "toggle_completed", phx_value_id: task.id, value: task.completed) %></td>
+        <% end %>
         <td>
           <span><%= live_redirect "Show", to: Routes.task_show_path(@socket, :show, task) %></span>
           <span><%= live_patch "Edit", to: Routes.task_index_path(@socket, :edit, task) %></span>
