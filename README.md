@@ -4,7 +4,7 @@ Personal task manager based on following requirements:
 
 https://paper.dropbox.com/doc/Kamana-Code-Sample-KaKg1HqgIPTDlaxb5pFTa
 
-A very basic CRUD application built with Live View.
+A very basic Phoenix CRUD application built with LiveView.
 
 ## Authentication
 
@@ -27,35 +27,84 @@ Get and compile dependencies.
 $ mix deps.get
 ```
 
+Compile
+
 ```bash
-$ mix deps.get
+$ mix deps.compile
 ```
 
-### Database
-
-Run migrations
+Assets
 
 ```bash
-$ mix ecto.setup
+$ cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode development
+```
+
+### Database Setup
+
+Set up the development database by creating it and running the migrations.
+
+```bash
+mix ecto.setup
+```
+
+These steps could be done separately.
+Create the database.
+
+```bash
+mix ecto.create
+```
+
+Run migrations.
+
+```bash
+mix ecto.migrate
 ```
 
 ### Start the Webserver
 
-From the base project folder, start the server.
+From the base project folder (todo), start the server.
 
 ```bash
-$ mix phx.server
+mix phx.server
 ```
 
-## CSS
+## Tests
+
+The unit tests may be run as follows:
+
+```
+mix test
+```
+
+## Operation
+
+From main/splash page, click Tasks button.
+This will bring up Tasks index view.
+From here can click New to bring up a modal dialog to enter a new Task.
+
+Tasks have a date time associated with them as "starts".
+A new Task has a default date/time of current day, zero hour.
+Tasks are considered "daily" and prior tasks are to be deleted.
+
+Task "starts" is stored as local time (not UTC).
+Persistence of date/time in UTC and converting to local for client was considered
+excessive for this project.
+
+New and edit bring up a modal dialog.
+
+Title is a required field.
+
+## Styling
 
 Considered adding Bootstrap or Tailwind CSS.
+
+Niether was added to project.
 
 ### Tailwind CSS
 
 Added Tailwind CSS and then removed following assessment of time requirment to implement.
 
-Installation was based on this:
+Installation of Tailwind was based on this:
 
 https://experimentingwithcode.com/using-tailwind-in-phoenix/
 
