@@ -77,6 +77,14 @@ defmodule TodoWeb.TaskLiveTest do
       assert html =~ "some updated description"
     end
 
+    test "Click for completed task triggers event", %{conn: conn, task: task} do
+      {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
+
+      assert index_live |> element("#task-#{task.id}") |> has_element?()
+
+      assert render_click(index_live, "toggle_completed", %{"id" => task.id}) =~ "toggle_completed"
+    end
+
     test "deletes task in listing", %{conn: conn, task: task} do
       {:ok, index_live, _html} = live(conn, Routes.task_index_path(conn, :index))
 

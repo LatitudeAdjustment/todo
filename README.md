@@ -72,7 +72,7 @@ mix phx.server
 
 The unit tests may be run as follows:
 
-```
+```bash
 mix test
 ```
 
@@ -99,6 +99,8 @@ Title is a required field.
 Considered adding Bootstrap or Tailwind CSS.
 
 Niether was added to project.
+
+Project uses default Milligram CSS, no JavaScript.
 
 ### Tailwind CSS
 
