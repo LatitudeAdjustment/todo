@@ -18,7 +18,10 @@ defmodule Todo.Tasks do
 
   """
   def list_tasks do
-    Repo.all(Task)
+    query = from t in Task,
+    order_by: [asc: t.starts]
+
+    Repo.all(query)
   end
 
   @doc """
