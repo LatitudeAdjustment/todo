@@ -1,8 +1,6 @@
 # Todo
 
-Personal task manager based on following requirements:
-
-https://paper.dropbox.com/doc/Kamana-Code-Sample-KaKg1HqgIPTDlaxb5pFTa
+Personal task manager based on Code Sample assignment.
 
 A very basic Phoenix CRUD application built with LiveView.
 
@@ -21,19 +19,20 @@ Clone the repository.
 git clone https://github.com/LatitudeAdjustment/todo.git
 ```
 
-Get and compile dependencies.
+From the base folder get and compile dependencies.
 
 ```bash
+$ cd todo
 $ mix deps.get
 ```
 
-Compile
+Compile dependencies
 
 ```bash
 $ mix deps.compile
 ```
 
-Assets
+Build assets.
 
 ```bash
 $ cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode development
@@ -41,7 +40,7 @@ $ cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode de
 
 ### Database Setup
 
-Set up the development database by creating it and running the migrations.
+Run ecto.setup the development database by creating it and running the migrations.
 
 ```bash
 mix ecto.setup
@@ -60,12 +59,26 @@ Run migrations.
 mix ecto.migrate
 ```
 
+Add seed data
+
+One may optionally add a few tasks to the database as follows.
+
+```bash
+mix run priv/repo/seeds.exs
+```
+
 ### Start the Webserver
 
 From the base project folder (todo), start the server.
 
 ```bash
 mix phx.server
+```
+
+Or run from within iex
+
+```bash
+iex -S mix phx.server
 ```
 
 ## Tests
@@ -80,37 +93,35 @@ mix test
 
 From main/splash page, click Tasks button.
 This will bring up Tasks index view.
-From here can click New to bring up a modal dialog to enter a new Task.
 
-Tasks have a date time associated with them as "starts".
-A new Task has a default date/time of current day, zero hour.
-Tasks are considered "daily" and prior tasks are to be deleted.
-
-Task "starts" is stored as local time (not UTC).
-Persistence of date/time in UTC and converting to local for client was considered
-excessive for this project.
-
-New and edit bring up a modal dialog.
+From Tasks one can click "New Task" link to bring up a modal dialog to enter a
+new Task or Edit to bring up an existing Task for modification.
 
 Title is a required field.
 
+Tasks have a "starts" date time.
+A new Task has a default starts date/time of current day, zero hour.
+Tasks are considered "daily" and prior tasks are to be deleted.
+
+Task "starts" is stored as local time (not UTC).
+Converting to and from local to UTC for persistence of starts date/time was
+considered excessive for this project.
+
 ## Styling
 
-Considered adding Bootstrap or Tailwind CSS.
+Bootstrap and Tailwind CSS were considered.
 
-Niether was added to project.
+Niether was permanently added to project.
 
-Project uses default Milligram CSS, no JavaScript.
+Project uses Phoenix default CSS, Milligram, no JavaScript.
 
 ### Tailwind CSS
 
-Added Tailwind CSS and then removed following assessment of time requirment to implement.
+Added Tailwind CSS and then removed it following assessment of time requirement
+to implement.
 
-Installation of Tailwind was based on this:
+Installation of Tailwind was based on these links:
 
 https://experimentingwithcode.com/using-tailwind-in-phoenix/
 
-Also this:
-
 https://pragmaticstudio.com/tutorials/adding-tailwind-css-to-phoenix
-

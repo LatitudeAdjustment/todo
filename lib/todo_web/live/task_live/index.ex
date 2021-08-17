@@ -49,6 +49,7 @@ defmodule TodoWeb.TaskLive.Index do
     {:noreply, assign(socket, :tasks, list_tasks())}
   end
 
+  @impl true
   def handle_event("toggle_completed", %{"id" => id}, socket) do
     task = Tasks.get_task!(id)
     Tasks.update_task(task, %{completed: !task.completed})
